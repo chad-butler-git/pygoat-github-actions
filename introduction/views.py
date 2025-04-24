@@ -154,7 +154,7 @@ def sql_lab(request):
 
             if login.objects.filter(user=name):
 
-		sql_query = "SELECT * FROM introduction_login WHERE user=%s AND password=%s"
+                sql_query = "SELECT * FROM introduction_login WHERE user=%s AND password=%s"
 		
                 print(sql_query)
                 try:
@@ -855,7 +855,7 @@ def injection_sql_lab(request):
         print(password)
 
         if name:
-	    sql_query = "SELECT * FROM introduction_sql_lab_table WHERE id=%s AND password=%s"
+        sql_query = "SELECT * FROM introduction_sql_lab_table WHERE id=%s AND password=%s"
 
 
             sql_instance = sql_lab_table(id="admin", password="65079b006e85a7e798abecb99e47c154")
@@ -870,7 +870,7 @@ def injection_sql_lab(request):
             print(sql_query)
 
             try:
-		user = list(sql_lab_table.objects.raw(sql_query, [name, password]))
+                user = list(sql_lab_table.objects.raw(sql_query, [name, password]))
                 user = user[0].id
                 print(user)
 
