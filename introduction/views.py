@@ -855,7 +855,7 @@ def injection_sql_lab(request):
         print(password)
 
         if name:
-        sql_query = "SELECT * FROM introduction_sql_lab_table WHERE id=%s AND password=%s"
+            sql_query = "SELECT * FROM introduction_sql_lab_table WHERE id=%s AND password=%s"
 
 
             sql_instance = sql_lab_table(id="admin", password="65079b006e85a7e798abecb99e47c154")
