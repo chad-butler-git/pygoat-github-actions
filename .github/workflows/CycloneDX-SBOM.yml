@@ -56,7 +56,7 @@ jobs:
         with:
           serverHostname: ${{ secrets.DT_HOST }}
           apiKey:         ${{ secrets.DT_API_KEY }}
-          projectName:    'pygoat'
+          projectName:    ${{ github.event.repository.name }}
           projectVersion: ${{ github.sha }}
           bomFile:        sbom.cdx.json
 
