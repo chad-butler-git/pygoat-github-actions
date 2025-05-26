@@ -1,4 +1,4 @@
-# .github/workflows/sbom.yml
+# .github/workflows/CycloneDX-SBOM.yml
 name: Generate CycloneDX SBOM
 
 on:
@@ -48,15 +48,4 @@ jobs:
           path: sbom.cdx.json
           retention-days: 30      # tunable
 
-      # (optional) Push straight into OWASP Dependency-Track
-      #       Only runs when you add the two secrets.
-      #- name: Upload to Dependency-Track
-      #  if: secrets.DT_API_KEY && secrets.DT_HOST
-      #  uses: DependencyTrack/gh-upload-sbom@v3          # official DT action 
-      #  with:
-      #    serverHostname: ${{ secrets.DT_HOST }}
-      #    apiKey:         ${{ secrets.DT_API_KEY }}
-      #    projectName:    ${{ github.event.repository.name }}
-      #    projectVersion: ${{ github.sha }}
-      #    bomFile:        sbom.cdx.json
 
