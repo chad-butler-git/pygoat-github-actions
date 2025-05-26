@@ -50,29 +50,13 @@ jobs:
 
       # (optional) Push straight into OWASP Dependency-Track
       #       Only runs when you add the two secrets.
-      - name: Upload to Dependency-Track
-        if: secrets.DT_API_KEY && secrets.DT_HOST
-        uses: DependencyTrack/gh-upload-sbom@v3          # official DT action 
-        with:
-          serverHostname: ${{ secrets.DT_HOST }}
-          apiKey:         ${{ secrets.DT_API_KEY }}
-          projectName:    ${{ github.event.repository.name }}
-          projectVersion: ${{ github.sha }}
-          bomFile:        sbom.cdx.json
+      #- name: Upload to Dependency-Track
+      #  if: secrets.DT_API_KEY && secrets.DT_HOST
+      #  uses: DependencyTrack/gh-upload-sbom@v3          # official DT action 
+      #  with:
+      #    serverHostname: ${{ secrets.DT_HOST }}
+      #    apiKey:         ${{ secrets.DT_API_KEY }}
+      #    projectName:    ${{ github.event.repository.name }}
+      #    projectVersion: ${{ github.sha }}
+      #    bomFile:        sbom.cdx.json
 
-      # Feed/patch GitHub’s own dependency graph
-      #      (GitHub only accepts SPDX → convert first, then submit)
-      - name: Install CycloneDX CLI (for format conversion)
-        run: |
-          curl -Lo cyclonedx https://github.com/CycloneDX/cyclonedx-cli/releases/latest/download/cyclonedx-linux-x64
-          chmod +x cyclonedx && sudo mv cyclonedx /usr/local/bin
-
-      - name: Convert CycloneDX → SPDX-JSON 2.2
-        run: cyclonedx convert \
-                --input-file sbom.cdx.json --input-format cyclonedx+json \
-                --output-file sbom.spdx.json --output-format spdx+json   # 
-
-      - name: Submit SPDX to the dependency graph
-        uses: advanced-security/spdx-dependency-submission-action@v0.1.1 
-        with:
-          filePath: sbom.spdx.json
