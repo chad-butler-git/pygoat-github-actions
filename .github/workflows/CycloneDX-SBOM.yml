@@ -51,7 +51,7 @@ jobs:
       # (optional) Push straight into OWASP Dependency-Track
       #       Only runs when you add the two secrets.
       - name: Upload to Dependency-Track
-        if: ${{ secrets.DT_API_KEY != '' && secrets.DT_HOST != '' }}
+        if: secrets.DT_API_KEY && secrets.DT_HOST
         uses: DependencyTrack/gh-upload-sbom@v3          # official DT action 
         with:
           serverHostname: ${{ secrets.DT_HOST }}
