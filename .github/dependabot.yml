@@ -1,5 +1,14 @@
 version: 2
 updates:
+  # open pull requests for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    
     # For zipp, ignore all updates
     ignore:
       - dependency-name: "zipp"
+         updates:
+
