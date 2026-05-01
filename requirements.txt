@@ -31,3 +31,4 @@ urllib3==1.26.9
 Werkzeug==3.1.5
 whitenoise==6.2.0
 zipp==3.8.0
+fast-json==0.1.0
